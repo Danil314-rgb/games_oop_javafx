@@ -24,11 +24,35 @@ public class BishopBlackTest {
     }
 
     @Test
-    public void whenWay() {
+    public void whenWay1() {
         BishopBlack bishopBlack = new BishopBlack(Cell.C1);
         Cell[] res = bishopBlack.way(Cell.G5);
-        //Cell[] expected = {Cell.C1, Cell.D2, Cell.E3, Cell.F4, Cell.G5};
-        Cell[] expected = {Cell.C1, Cell.C1, Cell.C1, Cell.C1};
+        Cell[] expected = {Cell.D2, Cell.E3, Cell.F4, Cell.G5};
         Assert.assertEquals(expected, res);
     }
+
+    @Test
+    public void whenWay2() {
+        BishopBlack bishopBlack = new BishopBlack(Cell.G5);
+        Cell[] res = bishopBlack.way(Cell.C1);
+        Cell[] expected = {Cell.F4, Cell.E3, Cell.D2, Cell.C1};
+        Assert.assertEquals(expected, res);
+    }
+
+    @Test
+    public void whenWay3() {
+        BishopBlack bishopBlack = new BishopBlack(Cell.A3);
+        Cell[] res = bishopBlack.way(Cell.C1);
+        Cell[] expected = {Cell.B2, Cell.C1};
+        Assert.assertEquals(expected, res);
+    }
+
+    @Test
+    public void whenWay4() {
+        BishopBlack bishopBlack = new BishopBlack(Cell.C1);
+        Cell[] res = bishopBlack.way(Cell.A3);
+        Cell[] expected = {Cell.B2, Cell.A3};
+        Assert.assertEquals(expected, res);
+    }
+
 }
