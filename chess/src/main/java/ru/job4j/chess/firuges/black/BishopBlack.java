@@ -25,30 +25,20 @@ public class BishopBlack implements Figure {
         }
         int size = Math.abs(position.getX() - dest.getX());
         Cell[] steps = new Cell[size];
-        int deltaX = position.getX();
-        int deltaY = position.getY();
+        int deltaX = (dest.getX()) - position.getX() > 0 ? 1 : -1;
+        int x  = position.getX();
+        int deltaY = (dest.getY()) - position.getY() > 0 ? 1 : -1;
+        int y = position.getY();
         for (int index = 0; index < size; index++) {
-            if (position.getX() < dest.getX() && position.getY() > dest.getY()) {
-                steps[index] = Cell.findBy(deltaX + index + 1, deltaY - index - 1);
-            }
-            if (position.getX() > dest.getX() && position.getY() < dest.getY()) {
-                steps[index] = Cell.findBy(deltaX - index - 1, deltaY + index + 1);
-            }
-            if (position.getX() < dest.getX() && position.getY() < dest.getY()) {
-                steps[index] = Cell.findBy(deltaX + index + 1, deltaY + index + 1);
-            }
-            if (position.getX() > dest.getX() && position.getY() > dest.getY()) {
-                steps[index] = Cell.findBy(deltaX - index - 1, deltaY - index - 1);
-            }
+            x += deltaX;
+            y += deltaY;
+            steps[index] = Cell.findBy(x, y);
         }
         return steps;
     }
 
     public boolean isDiagonal(Cell source, Cell dest) {
-        if (source.getX() - dest.getX() == source.getY() - dest.getY() || source.getX() - dest.getX() == dest.getY() - source.getY()) {
-            return true;
-        }
-        return false;
+        return Math.abs(source.getX() - dest.getX()) == Math.abs(source.getY() - dest.getY());
     }
 
     @Override
